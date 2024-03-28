@@ -19,7 +19,11 @@
             @media screen and (max-width: 768px) {
                 .col-5, .col-1, .col-4 {
                     width: 85vh; /* Reset width for smaller screens */
-                    height: 25vh;
+                    min-height: 10vh; /* Set min-height for smaller screens */
+                }
+                img {
+                    padding-top: 25px; /* pad pictures on smaller screens */
+                    padding-bottom: 25px;
                 }
             }
         </style>
