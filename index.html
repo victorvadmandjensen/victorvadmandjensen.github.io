@@ -19,11 +19,17 @@
             @media screen and (max-width: 768px) {
                 .col-5, .col-1, .col-4 {
                     width: 85vh; /* Reset width for smaller screens */
-                    min-height: 10vh; /* Set min-height for smaller screens */
+                    min-height: 20vh; /* Set min-height for smaller screens */
                 }
                 #victor-profile {
                     padding-top: 25vh; /* pad pictures on smaller screens */
                     padding-bottom: 25vh;
+                }
+                #pic_div {
+                    position: absolute;
+                    top: 0;
+                    left: 50%; 
+                    transform: translateX(-50%);
                 }
             }
         </style>
@@ -82,6 +88,7 @@
         </div>
 
 
+    
         <div class="row" style="height: 50vh;">
             <div class="col-4"></div>
             <div class="col-4">
@@ -106,7 +113,7 @@
 
             
             </div>
-            <div class="col" text-align="center;">
+            <div class="col" id="pic_div">
                 <p> 
                     <img src="image.png" class="img-fluid" id="victor-profile" style="height: 40vh;" alt="A picture of me presenting at CHI 2023!">
                 </p>
