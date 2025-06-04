@@ -24,7 +24,7 @@
 // fetch the JSON with GET, resolve the response by returning the JSON in the response, then get the JSON
 var json_data;
 
-fetch("C:/Users/Victor/Documents/GitHub/victorvadmandjensen.github.io/academic_papers.json", {
+fetch("https://victorvadmandjensen.github.io/academic_papers.json", {
                     method: "GET"
                     })
                     .then(function(response) {
@@ -41,12 +41,19 @@ function display_papers(papers) {
 
     papers.forEach(element => {
         const paperElement = document.createElement("p");
-        //paperElement.className("mb-1 text-start");
+        paperElement.className = "mb-1 text-start";
 
         console.log(element);
 
         paperElement.innerHTML = `
+        ${element.authors}
+        ${element.year}
         ${element.title}
+        <i>${element.venue}</i>
+        <p class="text-start"> 
+            <a href = ${element.link} target="_blank"> Link </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </p>
         `;
 
         container.appendChild(paperElement);
