@@ -51,7 +51,7 @@ function display_papers(papers) {
         ${element.title}
         <i>${element.venue}</i>
         <p class="text-start"> 
-            <a href = ${element.link} target="_blank"> Link </a>
+            <a href = ${element.link} target="_blank">Link</a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </p>
         `;
