@@ -22,29 +22,34 @@
 */ 
 
 // fetch the JSON with GET, resolve the response by returning the JSON in the response, then get the JSON
-const json_data = fetch("https://victorvadmandjensen.github.io/academic_papers.json", {
+var json_data;
+
+fetch("C:/Users/Victor/Documents/GitHub/victorvadmandjensen.github.io/academic_papers.json", {
                     method: "GET"
                     })
                     .then(function(response) {
                         return response.json(); 
                     })
-                    .then(function(json) {
-                        display_papers(json);
+                    .then( data => {
+                        json_data = data;
+                        //console.log(json_data);
+                        display_papers(json_data);
                     });
 
 function display_papers(papers) {
     const container = document.getElementById("paper_container");
 
-    papers.array.forEach(element => {
+    papers.forEach(element => {
         const paperElement = document.createElement("p");
-        paperElement.className("mb-1 text-start");
+        //paperElement.className("mb-1 text-start");
+
+        console.log(element);
 
         paperElement.innerHTML = `
-        $element.authors
+        ${element.title}
         `;
 
         container.appendChild(paperElement);
     });
 }
 
-//display_papers(json_data);
