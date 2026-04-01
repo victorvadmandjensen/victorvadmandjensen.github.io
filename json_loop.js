@@ -21,42 +21,61 @@
 
 */ 
 
-// fetch the JSON with GET, resolve the response by returning the JSON in the response, then get the JSON
-var json_data;
 
-fetch("https://victorvadmandjensen.github.io/academic_papers.json", {
-                    method: "GET"
-                    })
-                    .then(function(response) {
-                        return response.json(); 
-                    })
-                    .then( data => {
-                        json_data = data;
-                        //console.log(json_data);
-                        display_papers(json_data);
-                    });
 
-function display_papers(papers) {
+document.addEventListener("DOMContentLoaded", function() {
+    // fetch the JSON with GET, resolve the response by returning the JSON in the response, then get the JSON
+    var json_data;
+
+    fetch("https://victorvadmandjensen.github.io/academic_papers.json", {
+                        method: "GET"
+                        })
+                        .then(function(response) {
+                            return response.json(); 
+                        })
+                        .then( data => {
+                            json_data = data;
+                            //console.log(json_data);
+                            display_papers(json_data, 2026);
+                        
+                        });
+                        
+    const yearButtons = document.querySelectorAll(".year-button");
+    yearButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const year = Number(this.getAttribute("data"));
+            console.log(year);
+            document.getElementById("paper_container").innerHTML = "";
+            display_papers(json_data, year);
+        })
+    })
+    
+});
+
+function display_papers(papers, chosen_year) {
     const container = document.getElementById("paper_container");
+    container.innerHTML = "";
 
     papers.forEach(element => {
-        const paperElement = document.createElement("p");
-        paperElement.className = "mb-1 text-start";
+            if (element.year.trim() == chosen_year) {
+                const paperElement = document.createElement("p");
+                paperElement.className = "mb-1 text-start";
 
-        console.log(element);
+                console.log(element);
 
-        paperElement.innerHTML = `
-        ${element.authors}
-        ${element.year}
-        ${element.title}
-        <i>${element.venue}</i>
-        <p class="text-start"> 
-            <a href = ${element.link} target="_blank">Link</a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </p>
-        `;
+                paperElement.innerHTML = `
+                ${element.authors}
+                ${element.year}.
+                ${element.title}.
+                <i>${element.venue}</i>.
+                <p class="text-start"> 
+                    <a href = ${element.link} target="_blank">Link</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </p>
+                `;
 
-        container.appendChild(paperElement);
+                container.appendChild(paperElement);
+            }
     });
 }
 
