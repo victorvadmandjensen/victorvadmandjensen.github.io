@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const year = Number(this.getAttribute("data"));
             console.log(year);
             document.getElementById("paper_container").innerHTML = "";
+             
             display_papers(json_data, year);
         })
     })
@@ -55,9 +56,28 @@ document.addEventListener("DOMContentLoaded", function() {
 function display_papers(papers, chosen_year) {
     const container = document.getElementById("paper_container");
     container.innerHTML = "";
-
     papers.forEach(element => {
-            if (element.year.trim() == chosen_year) {
+            if (chosen_year == "0") {
+
+            const paperElement = document.createElement("p");
+                paperElement.className = "mb-1 text-start";
+
+                console.log(element);
+
+                paperElement.innerHTML = `
+                ${element.authors}
+                ${element.year}.
+                ${element.title}.
+                <i>${element.venue}</i>.
+                <p class="text-start"> 
+                    <a href = ${element.link} target="_blank">Link</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </p>
+                `;
+
+                container.appendChild(paperElement);
+            }
+            else if (element.year.trim() == chosen_year) {
                 const paperElement = document.createElement("p");
                 paperElement.className = "mb-1 text-start";
 
