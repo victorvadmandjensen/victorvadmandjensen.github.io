@@ -58,7 +58,6 @@ function display_papers(papers, chosen_year) {
     container.innerHTML = "";
     papers.forEach(element => {
             if (chosen_year == "0") {
-                console.log("yes");
             const paperElement = document.createElement("p");
                 paperElement.className = "mb-1 text-start";
 
